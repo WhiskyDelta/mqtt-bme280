@@ -11,7 +11,7 @@ import socket
 import time
 import sys
 
-import mosquitto
+import paho.mqtt.client as paho
 import ConfigParser
 import setproctitle
 
@@ -36,7 +36,7 @@ APPNAME = "mqtt-bme280"
 PRESENCETOPIC = "clients/" + socket.getfqdn() + "/" + APPNAME + "/state"
 setproctitle.setproctitle(APPNAME)
 client_id = APPNAME + "_%d" % os.getpid()
-mqttc = mosquitto.Mosquitto(client_id)
+mqttc = paho.Client(client_id)
 
 LOGFORMAT = '%(asctime)-15s %(message)s'
 
